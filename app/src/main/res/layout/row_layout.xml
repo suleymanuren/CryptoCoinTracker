@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="70dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/teal_200"
@@ -10,7 +10,6 @@
 
     <TextView
         android:paddingLeft="10dp"
-
         android:id="@+id/cryptoName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,13 +21,14 @@
         tools:text="BTC" />
 
     <TextView
-        android:paddingRight="10dp"
         android:id="@+id/cryptoPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="10dp"
         android:text="250$"
         android:textColor="@android:color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/dailyVolume"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,19 +37,29 @@
         android:id="@+id/cryptoLongName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Daily Volume"
-        android:textSize="20dp"
+        tools:text="Bitcoin"
+        android:textSize="16dp"
         android:layout_marginRight="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-    <TextView
-        android:paddingRight="10dp"
 
+    <TextView
+        android:id="@+id/dailyVolumeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginLeft="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/dailyVolume"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Hourly Volume" />
+    <TextView
+        android:paddingEnd="10dp"
         android:id="@+id/dailyVolume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="32131231321"
-        android:textSize="20dp"
+        tools:text="1234"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

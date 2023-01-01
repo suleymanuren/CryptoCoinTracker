@@ -2,6 +2,7 @@ package com.suleymanuren.cryptotracker.adapter
 
 import android.graphics.Color
 import android.net.Uri
+import android.text.InputFilter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.suleymanuren.cryptotracker.R
 import com.suleymanuren.cryptotracker.databinding.RowLayoutBinding
 import com.suleymanuren.cryptotracker.model.CryptoModelItem
+import com.suleymanuren.cryptotracker.model.CryptoModelX
+import kotlin.math.max
 
 class RecyclerViewAdapter(private val cryptoList: ArrayList<CryptoModelItem>,private val listener : Listener) : RecyclerView.Adapter<RecyclerViewAdapter.RowHolder>() {
 
@@ -33,9 +36,19 @@ class RecyclerViewAdapter(private val cryptoList: ArrayList<CryptoModelItem>,pri
         holder.itemView.setBackgroundColor(Color.parseColor(colors[position % 8]))
         holder.binding.cryptoName.text = cryptoList[position].asset_id
         holder.binding.cryptoLongName.text = cryptoList[position].name
+        holder.binding.cryptoPrice.text = String.format("%.4f", cryptoList[position].price_usd) + "$"
+        holder.binding.dailyVolumeText.text = "Hourly Volume"
 
-        holder.binding.cryptoPrice.text = cryptoList[position].price_usd?.toInt().toString() + "$"
-        holder.binding.dailyVolume.text = cryptoList[position].volume_1day_usd.toString() + "$"
+
+        if(cryptoList[position].volume_1hrs_usd!! >= 1000000000)
+        {
+            holder.binding.dailyVolume.filters = arrayOf(InputFilter.LengthFilter(10))
+            holder.binding.dailyVolume.text = "+" +  "$" + String.format("%.0f", cryptoList[position].volume_1hrs_usd)
+        }
+        else{
+            holder.binding.dailyVolume.text =  "$" + String.format("%.0f", cryptoList[position].volume_1hrs_usd)
+        }
+
 
     }
 
